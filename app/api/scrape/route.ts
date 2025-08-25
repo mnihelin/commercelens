@@ -26,6 +26,7 @@ async function parseAndSaveResults(jsonOutput: any): Promise<void> {
         collection_name: collectionName,
         platform: result.platform || jsonOutput.platform,
         product_name: result.product_name || 'Bilinmeyen Ürün',
+        timestamp: new Date().toISOString(),
         total_reviews: result.total_reviews,
         price: result.price || 0,
         product_url: result.product_url || '',
