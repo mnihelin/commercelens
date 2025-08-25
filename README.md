@@ -171,4 +171,4 @@ Bu proje MIT lisansı altında lisanslanmıştır.
 
 ## Not
 
- 
+ # Deploy trigger
