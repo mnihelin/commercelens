@@ -47,8 +47,6 @@ export async function POST(request: NextRequest) {
     const analysisData = findBestSellers(sellers);
 
     // Gemini API ile basit karşılaştırma analizi
-    const geminiApiKey = "AIzaSyBsX6W8CG3autBHfV3IcD8oA5j_yDM8EfQ";
-    
     const prompt = `
 ${collectionName} koleksiyonundaki satıcı benchmark analizi yapılacak:
 
