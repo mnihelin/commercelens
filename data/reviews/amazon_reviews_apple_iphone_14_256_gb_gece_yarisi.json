@@ -1,0 +1,26 @@
+[
+  {
+    "id": "amazon_reviews_apple_iphone_14_256_gb_gece_yarisi_1753107266691",
+    "collection_name": "amazon_reviews_apple_iphone_14_256_gb_gece_yarisi",
+    "platform": "amazon",
+    "product_name": "Apple iPhone 14 (256 GB) - Gece yarısı",
+    "total_reviews": 28,
+    "price": 49999,
+    "product_url": "https://www.amazon.com.tr/dp/B0BDHWKL97",
+    "search_term": "iphone 15",
+    "created_at": "2025-07-21T14:14:26.691Z",
+    "last_updated": "2025-07-21T14:14:26.691Z"
+  },
+  {
+    "id": "amazon_reviews_apple_iphone_14_256_gb_gece_yarisi_1753107407185",
+    "collection_name": "amazon_reviews_apple_iphone_14_256_gb_gece_yarisi",
+    "platform": "amazon",
+    "product_name": "Apple iPhone 14 (256 GB) - Gece yarısı",
+    "total_reviews": 28,
+    "price": 49999,
+    "product_url": "https://www.amazon.com.tr/dp/B0BDHWKL97",
+    "search_term": "iphone 15",
+    "created_at": "2025-07-21T14:16:47.185Z",
+    "last_updated": "2025-07-21T14:16:47.185Z"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "amazon_reviews_adidas_originals_1753107491162",
+    "collection_name": "amazon_reviews_adidas_originals",
+    "platform": "amazon",
+    "product_name": "adidas Originals",
+    "total_reviews": 21,
+    "price": 4583,
+    "product_url": "https://www.amazon.com.tr/adidas-Erkek-Samba-jimnastik-ayakkab%C4%B1s%C4%B1/dp/B07D76GNZC/ref=sr_1_5",
+    "search_term": "adidas samba erkek ayakkabı",
+    "created_at": "2025-07-21T14:18:11.162Z",
+    "last_updated": "2025-07-21T14:18:11.162Z"
+  },
+  {
+    "id": "amazon_reviews_adidas_originals_1755068370422",
+    "collection_name": "amazon_reviews_adidas_originals",
+    "platform": "amazon",
+    "product_name": "adidas Originals",
+    "total_reviews": 21,
+    "price": 5265,
+    "product_url": "https://www.amazon.com.tr/dp/B07D73J36K",
+    "search_term": "adidas samba erkek ayakkabı",
+    "created_at": "2025-08-13T06:59:30.422Z",
+    "last_updated": "2025-08-13T06:59:30.422Z"
+  }
+]

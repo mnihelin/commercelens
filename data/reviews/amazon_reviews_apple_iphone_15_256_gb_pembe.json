@@ -1,0 +1,26 @@
+[
+  {
+    "id": "amazon_reviews_apple_iphone_15_256_gb_pembe_1753107266688",
+    "collection_name": "amazon_reviews_apple_iphone_15_256_gb_pembe",
+    "platform": "amazon",
+    "product_name": "Apple iPhone 15 (256 GB) - Pembe",
+    "total_reviews": 25,
+    "price": 58499,
+    "product_url": "https://www.amazon.com.tr/dp/B0CHX9D18W",
+    "search_term": "iphone 15",
+    "created_at": "2025-07-21T14:14:26.688Z",
+    "last_updated": "2025-07-21T14:14:26.688Z"
+  },
+  {
+    "id": "amazon_reviews_apple_iphone_15_256_gb_pembe_1753107407184",
+    "collection_name": "amazon_reviews_apple_iphone_15_256_gb_pembe",
+    "platform": "amazon",
+    "product_name": "Apple iPhone 15 (256 GB) - Pembe",
+    "total_reviews": 25,
+    "price": 58499,
+    "product_url": "https://www.amazon.com.tr/dp/B0CHX9D18W",
+    "search_term": "iphone 15",
+    "created_at": "2025-07-21T14:16:47.184Z",
+    "last_updated": "2025-07-21T14:16:47.184Z"
+  }
+]
