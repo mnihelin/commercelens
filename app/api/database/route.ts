@@ -85,7 +85,7 @@ export async function GET(request: NextRequest) {
             }
           ]).toArray();
           
-          platformStats = platforms.reduce((acc, item) => {
+          platformStats = platforms.reduce((acc: any, item) => {
             acc[item._id || 'unknown'] = {
               count: item.count,
               latestTimestamp: item.latestTimestamp
