@@ -6,7 +6,7 @@ export async function GET(request: NextRequest) {
   try {
     // Önce MongoDB'i dene
     let useLocalStorage = false;
-    let client, db;
+    let client: any, db: any;
     
     try {
       if (process.env.MONGODB_URI) {
@@ -50,6 +50,7 @@ export async function GET(request: NextRequest) {
     }
     
     // Tüm koleksiyonları listele
+    if (!db) throw new Error("Database not available");
     const collections = await db.listCollections().toArray();
     
     const databaseStats = {
@@ -197,7 +198,8 @@ export async function DELETE(request: NextRequest) {
       });
     } else if (action === 'all') {
       // Tüm koleksiyonları sil
-      const collections = await db.listCollections().toArray();
+      if (!db) throw new Error("Database not available");
+    const collections = await db.listCollections().toArray();
       
       for (const collection of collections) {
         try {
