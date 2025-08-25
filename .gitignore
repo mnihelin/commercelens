@@ -46,7 +46,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# lib/ - commented out to include our lib folder
 lib64/
 parts/
 sdist/
