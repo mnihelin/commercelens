@@ -101,7 +101,7 @@ export class UserModel {
   // Tüm kullanıcıları listele (admin için)
   getAllUsers() {
     const users = [];
-    for (const [username, user] of this.users) {
+    for (const [username, user] of Array.from(this.users.entries())) {
       users.push({
         username: user.username,
         email: user.email,
