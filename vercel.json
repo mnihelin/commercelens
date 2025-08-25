@@ -1,0 +1,9 @@
+{
+  "functions": {
+    "app/api/scrape/route.ts": {
+      "maxDuration": 300
+    }
+  },
+  "regions": ["fra1"],
+  "crons": []
+}

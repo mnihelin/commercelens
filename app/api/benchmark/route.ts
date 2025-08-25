@@ -102,6 +102,8 @@ Lütfen şu formatta PROFESYONEL ve ŞIK bir TÜRKÇE analiz yap:
 SADECE anlamlı bilgileri ver. Kısa, öz ve profesyonel ol.
 `;
 
+    const geminiApiKey = process.env.GOOGLE_GEMINI_API_KEY;
+    
     const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=${geminiApiKey}`, {
       method: 'POST',
       headers: {

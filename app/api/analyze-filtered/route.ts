@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Gemini API çağrısı
-    const geminiApiKey = "AIzaSyBsX6W8CG3autBHfV3IcD8oA5j_yDM8EfQ";
+    const geminiApiKey = process.env.GOOGLE_GEMINI_API_KEY;
     
     const magaza_adi = platformInfo.platforms.join(', ') || 'E-ticaret Platform';
     const urun_bilgisi = platformInfo.products.slice(0, 3).join(', ') || 'Çeşitli Ürünler';

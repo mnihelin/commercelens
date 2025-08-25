@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
     };
 
     // Gemini API çağrısı
-    const geminiApiKey = "AIzaSyBsX6W8CG3autBHfV3IcD8oA5j_yDM8EfQ";
+    const geminiApiKey = process.env.GOOGLE_GEMINI_API_KEY;
     
     const prompt = `
 İki farklı ürünün AI analiz sonuçlarını karşılaştırarak hangi ürünün daha iyi olduğunu belirle:
