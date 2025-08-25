@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
       } else {
         useLocalStorage = true;
       }
-    } catch (mongoError) {
+    } catch (mongoError: any) {
       console.log('MongoDB bağlantısı yok, local storage kullanılıyor:', mongoError.message);
       useLocalStorage = true;
     }
