@@ -114,7 +114,7 @@ export async function DELETE(request: NextRequest) {
       deleteResult = await collection.deleteOne({ _id: new ObjectId(analysisId) });
     } catch (objectIdError) {
       // Eğer ObjectId formatında değilse string olarak dene
-      deleteResult = await collection.deleteOne({ _id: analysisId });
+      deleteResult = await collection.deleteOne({ _id: analysisId as any });
     }
     
     if (deleteResult.deletedCount === 0) {
