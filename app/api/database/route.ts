@@ -1,10 +1,53 @@
 import { NextRequest, NextResponse } from 'next/server';
 import clientPromise from '../../../lib/mongodb';
+import { getCollections, getReviews, getStorageStats } from '../../../lib/localDataStorage';
 
 export async function GET(request: NextRequest) {
   try {
-    const client = await clientPromise;
-    const db = client.db('ecommerce_analytics');
+    // Önce MongoDB'i dene
+    let useLocalStorage = false;
+    let client, db;
+    
+    try {
+      if (process.env.MONGODB_URI) {
+        client = await clientPromise;
+        db = client.db('ecommerce_analytics');
+        // MongoDB bağlantısını test et
+        await db.admin().ping();
+      } else {
+        useLocalStorage = true;
+      }
+    } catch (mongoError) {
+      console.log('MongoDB bağlantısı yok, local storage kullanılıyor:', mongoError.message);
+      useLocalStorage = true;
+    }
+
+    if (useLocalStorage) {
+      // Local storage'ı kullan
+      const collections = await getCollections();
+      const stats = await getStorageStats();
+      
+      const databaseStats = {
+        collections: collections.map(col => ({
+          name: col.name,
+          type: 'json_file',
+          documentCount: col.document_count,
+          sampleDocuments: [], // İhtiyaç halinde getReviews(col.name) ile doldurulabilir
+          platformStats: { [col.platform]: { count: col.document_count } },
+          productStats: [{ _id: col.product_name, count: col.document_count, platform: col.platform }]
+        })),
+        totalDocuments: stats.total_reviews,
+        totalSize: stats.total_collections
+      };
+
+      return NextResponse.json({
+        success: true,
+        database: 'local_storage',
+        stats: databaseStats,
+        timestamp: new Date().toISOString(),
+        source: 'local_files'
+      });
+    }
     
     // Tüm koleksiyonları listele
     const collections = await db.listCollections().toArray();
@@ -94,15 +137,44 @@ export async function GET(request: NextRequest) {
       success: true,
       database: 'ecommerce_analytics',
       stats: databaseStats,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
+      source: 'mongodb'
     });
 
   } catch (error) {
     console.error('Database API Error:', error);
-    return NextResponse.json(
-      { success: false, error: 'Veritabanı bilgileri alınırken hata oluştu' },
-      { status: 500 }
-    );
+    
+    // Son çare olarak local storage'ı dene
+    try {
+      const collections = await getCollections();
+      const stats = await getStorageStats();
+      
+      const databaseStats = {
+        collections: collections.map(col => ({
+          name: col.name,
+          type: 'json_file',
+          documentCount: col.document_count,
+          sampleDocuments: [],
+          platformStats: { [col.platform]: { count: col.document_count } },
+          productStats: [{ _id: col.product_name, count: col.document_count, platform: col.platform }]
+        })),
+        totalDocuments: stats.total_reviews,
+        totalSize: stats.total_collections
+      };
+
+      return NextResponse.json({
+        success: true,
+        database: 'local_storage_fallback',
+        stats: databaseStats,
+        timestamp: new Date().toISOString(),
+        source: 'local_files_fallback'
+      });
+    } catch (fallbackError) {
+      return NextResponse.json(
+        { success: false, error: 'Veritabanı bilgileri alınırken hata oluştu' },
+        { status: 500 }
+      );
+    }
   }
 }
 
