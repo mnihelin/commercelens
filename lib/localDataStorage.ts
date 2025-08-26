@@ -3,17 +3,9 @@
 import fs from 'fs';
 import path from 'path';
 
-// Vercel production için path'leri güvenli yap
 const DATA_DIR = path.join(process.cwd(), 'data');
 const REVIEWS_DIR = path.join(DATA_DIR, 'reviews');
 const ANALYSIS_DIR = path.join(DATA_DIR, 'analysis');
-
-console.log('📁 Data paths:', {
-  DATA_DIR,
-  REVIEWS_DIR,
-  ANALYSIS_DIR,
-  cwd: process.cwd()
-});
 
 // Dizinleri oluştur
 function ensureDirectories() {
@@ -166,17 +158,7 @@ export async function getCollections(): Promise<Array<{
 }>> {
   ensureDirectories();
   
-  console.log('🔍 Checking REVIEWS_DIR:', REVIEWS_DIR);
-  
-  // Vercel'de dosya var mı kontrol et
-  if (!fs.existsSync(REVIEWS_DIR)) {
-    console.warn('⚠️ REVIEWS_DIR bulunamadı:', REVIEWS_DIR);
-    return [];
-  }
-  
   const files = fs.readdirSync(REVIEWS_DIR).filter(f => f.endsWith('.json'));
-  console.log('📁 Bulunan dosyalar:', files.length);
-  
   const collections = [];
   
   for (const file of files) {
