@@ -116,7 +116,7 @@ export async function GET(request: NextRequest) {
           name: collectionName,
           type: collection.type || 'collection',
           documentCount,
-          sampleDocuments: sampleDocuments.map(doc => ({
+          sampleDocuments: sampleDocuments.map((doc: any) => ({
             id: doc._id,
             platform: doc.platform,
             product_name: doc.product_name,
