@@ -69,7 +69,7 @@ export async function GET(request: NextRequest) {
     const collections = await db.listCollections().toArray();
     
     const databaseStats = {
-      collections: [],
+      collections: [] as any[],
       totalDocuments: 0,
       totalSize: 0
     };
