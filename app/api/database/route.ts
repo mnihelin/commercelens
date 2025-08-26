@@ -18,13 +18,24 @@ export async function GET(request: NextRequest) {
         useLocalStorage = true;
       }
     } catch (mongoError: any) {
-      console.error('MongoDB bağlantı hatası:', {
+      const debugInfo = {
         message: mongoError.message,
         code: mongoError.code,
         mongodbUri: process.env.MONGODB_URI ? 'SET' : 'NOT_SET',
-        uriPrefix: process.env.MONGODB_URI?.substring(0, 20) || 'N/A'
-      });
-      useLocalStorage = true;
+        uriPrefix: process.env.MONGODB_URI?.substring(0, 20) || 'N/A',
+        uriLength: process.env.MONGODB_URI?.length || 0,
+        geminiKeyExists: !!process.env.GOOGLE_GEMINI_API_KEY,
+        nodeEnv: process.env.NODE_ENV
+      };
+      console.error('MongoDB bağlantı hatası:', debugInfo);
+      
+      // Debug bilgilerini error response'a ekle
+      return NextResponse.json({
+        success: false,
+        error: 'MongoDB bağlantı hatası',
+        debug: debugInfo,
+        mongoError: mongoError.message
+      }, { status: 500 });
     }
 
     if (useLocalStorage) {
