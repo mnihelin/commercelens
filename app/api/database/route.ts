@@ -82,7 +82,7 @@ export async function GET(request: NextRequest) {
         
         // Koleksiyon istatistikleri
         const documentCount = await coll.countDocuments();
-        const sampleDocuments = await coll.find({}).limit(3).toArray();
+        const sampleDocuments = await coll.find({}).limit(100).toArray();
         
         // Platform istatistikleri
         const platforms = await coll.aggregate([
@@ -117,10 +117,17 @@ export async function GET(request: NextRequest) {
           type: collection.type || 'collection',
           documentCount,
           sampleDocuments: sampleDocuments.map((doc: any) => ({
+            _id: doc._id,
             id: doc._id,
             platform: doc.platform,
             product_name: doc.product_name,
-            timestamp: doc.timestamp
+            comment: doc.comment,
+            rating: doc.rating,
+            price: doc.price,
+            product_price: doc.product_price,
+            timestamp: doc.timestamp,
+            created_at: doc.created_at,
+            comment_date: doc.comment_date
           })),
           platformStats,
           productStats: products
