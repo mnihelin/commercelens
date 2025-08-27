@@ -46,6 +46,15 @@ async function parseAndSaveResults(jsonOutput: any): Promise<void> {
 
 export async function POST(request: NextRequest) {
   try {
+    // Production ortamında scraping devre dışı
+    if (process.env.NODE_ENV === 'production') {
+      return NextResponse.json({
+        success: false,
+        error: 'Veri çekme işlemi şu anda production ortamında devre dışı. Local development ortamında kullanılabilir.',
+        production_note: 'Python scriptleri Vercel serverless ortamında çalışmaz. Bu özellik sadece local development için aktiftir.'
+      }, { status: 503 });
+    }
+
     const { url, platform, maxPages, searchTerm, searchType } = await request.json();
 
     // Eğer search türü ise

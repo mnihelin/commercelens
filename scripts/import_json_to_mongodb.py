@@ -22,9 +22,11 @@ def create_safe_collection_name(filename):
 def import_json_to_mongodb():
     # MongoDB bağlantısı
     try:
-        client = MongoClient('mongodb://localhost:27017/')
+        # Environment variable'dan MongoDB URI'yi al
+        mongodb_uri = os.getenv('MONGODB_URI', 'mongodb://localhost:27017/')
+        client = MongoClient(mongodb_uri)
         db = client['ecommerce_analytics']
-        print("MongoDB'ye başarıyla bağlanıldı")
+        print(f"MongoDB'ye başarıyla bağlanıldı: {mongodb_uri[:30]}...")
     except Exception as e:
         print(f"MongoDB bağlantı hatası: {e}")
         return

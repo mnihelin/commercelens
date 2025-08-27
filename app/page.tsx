@@ -177,6 +177,35 @@ export default function Home() {
                 </p>
               </div>
 
+              {/* Production Warning */}
+              {process.env.NODE_ENV === 'production' && (
+                <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 mb-8 shadow-lg">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center">
+                      <span className="text-white text-lg">⚠️</span>
+                    </div>
+                    <h3 className="text-lg font-bold text-amber-800">Production Ortamı Bilgisi</h3>
+                  </div>
+                  <div className="text-amber-700">
+                    <p className="mb-2">
+                      <strong>Veri çekme işlemi şu anda production ortamında devre dışıdır.</strong>
+                    </p>
+                    <p className="text-sm">
+                      Python scriptleri Vercel serverless ortamında çalışmaz. Bu özellik sadece local development ortamında kullanılabilir.
+                      Mevcut analiz ve veritabanı özelliklerini kullanarak 1000+ mevcut veriyle çalışabilirsiniz.
+                    </p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      <a href="/database" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors text-sm">
+                        📊 Mevcut Verileri Görüntüle
+                      </a>
+                      <a href="/analysis" className="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-colors text-sm">
+                        🔍 Analiz Yap
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {/* Search Forms */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                 {/* URL ile Arama */}
