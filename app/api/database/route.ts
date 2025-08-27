@@ -82,7 +82,7 @@ export async function GET(request: NextRequest) {
         
         // Koleksiyon istatistikleri
         const documentCount = await coll.countDocuments();
-        const sampleDocuments = await coll.find({}).limit(100).toArray();
+        const sampleDocuments = await coll.find({}).toArray();
         
         // Platform istatistikleri
         const platforms = await coll.aggregate([
